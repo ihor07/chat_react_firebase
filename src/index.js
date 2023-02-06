@@ -1,25 +1,12 @@
 import React from 'react'
 import { useContext, createContext } from 'react'
 import ReactDOM from 'react-dom/client'
-import {
-  collection,
-  addDoc,
-  Timestamp,
-  getDocs,
-  doc,
-  query,
-  onSnapshot,
-  orderBy,
-} from 'firebase/firestore'
+import firebase from 'firebase/compat/app'
 import 'firebase/firestore'
 import 'firebase/auth'
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import { getAuth } from 'firebase/auth'
-import firebase from 'firebase/compat/app'
-import 'firebase/compat/auth'
-import 'firebase/compat/firestore'
-
 import { getFirestore } from 'firebase/firestore'
 
 import App from './App'
@@ -36,8 +23,8 @@ export const Context = createContext(null)
 // Initialize Firebase
 const app = initializeApp(firebaseConfig)
 const analytics = getAnalytics(app)
-const auth = getAuth(app)
-const firestore = getFirestore(app)
+export const auth = getAuth(app)
+export const firestore = getFirestore(app)
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

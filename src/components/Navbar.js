@@ -5,15 +5,19 @@ import Button from '@mui/material/ToggleButton'
 import Grid from '@mui/material/Grid'
 import { NavLink } from 'react-router-dom'
 import { LOGIN_ROUTE } from '../utils/consts'
+import { useContext } from 'react'
+import { useAuthState } from 'react-firebase-hooks/auth'
+import { Context } from '../index'
 
 const Navbar = () => {
-  const user = false
+  const { auth } = useContext(Context)
+  const [user] = useAuthState(auth)
   return (
     <AppBar position="static">
       <Toolbar>
         <Grid container justifyContent={'flex-end'}>
           {user ? (
-            <Button>Exit</Button>
+            <Button onClick={() => auth.signOut()}>Exit</Button>
           ) : (
             <NavLink to={LOGIN_ROUTE}>
               <Button>Login</Button>
